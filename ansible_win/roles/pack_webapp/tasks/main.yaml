@@ -1,0 +1,30 @@
+---
+- name: Ensure app directory exists
+  win_file:
+    path: "{{ webapp_install_dir }}"
+    state: directory
+
+- name: Download application package
+  win_get_url:
+    url: "{{ webapp_package_url }}"
+    dest: "{{ webapp_temp_dir }}\\{{ webapp_package_name }}"
+
+- name: Extract application package
+  win_unzip:
+    src: "{{ webapp_temp_dir }}\\{{ webapp_package_name }}"
+    dest: "{{ webapp_install_dir }}"
+    delete_archive: true
+  when: webapp_package_name | regex_search('\.zip$')
+
+- name: Apply configuration
+  win_template:
+    src: "appsettings.json.j2"
+    dest: "{{ webapp_install_dir }}\\appsettings.json"
+
+- name: Create application service
+  win_nssm:
+    name: "{{ webapp_service_name }}"
+    application: "{{ webapp_exe_path }}"
+    working_directory: "{{ webapp_install_dir }}"
+    state: "{{ webapp_service_state }}"
+    start_mode: "{{ webapp_service_startup }}"

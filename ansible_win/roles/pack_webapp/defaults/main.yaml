@@ -1,0 +1,22 @@
+---
+pack_webapp_enabled: false
+
+# Application package settings
+webapp_package_url: "https://repo.example.com/sample-app.zip"
+webapp_package_name: "sample-app.zip"
+webapp_temp_dir: "C:\\temp"
+
+# Installation settings
+webapp_install_dir: "C:\\apps\\sample-webapp"
+webapp_exe_path: "C:\\apps\\sample-webapp\\SampleWebApp.exe"
+
+# Service configuration
+webapp_service_name: "SampleWebApp"
+webapp_service_startup: "auto"
+webapp_service_state: "started"
+
+# Application configuration
+webapp_app_port: 8080
+webapp_environment: "development"
+webapp_log_level: "Information"
+webapp_connection_string: "Server=localhost;Database=SampleDB;Trusted_Connection=True;"

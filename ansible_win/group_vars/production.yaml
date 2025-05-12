@@ -1,0 +1,10 @@
+---
+pack_webapp_enabled: true # Enable the Web Application role
+pack_prometheus_node_exporter_enabled: true # Enable the Prometheus Node Exporter role
+
+
+# Web Application Configuration - Production
+webapp_environment: "production"
+webapp_log_level: "Warning"
+webapp_connection_string: "Server=prod-sql-01;Database=SampleDB_Prod;User ID=produser;Password=prodpass;"
+webapp_api_url: "http://api.example.com"

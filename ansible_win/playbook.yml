@@ -24,3 +24,7 @@
     - role: pack_filezilla
       tags: filezilla
       when: (pack_filezilla_enabled | default(false))
+      
+    - role: pack_webapp
+      tags: webapp
+      when: (pack_webapp_enabled | default(false))
