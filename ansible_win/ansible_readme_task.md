@@ -12,18 +12,24 @@
   - Simple installation without custom parameters
   - Basic service configuration
 
-### ✅ Multi-Server Architecture
+- **Web Application deployment**: WebApp Service
+  - Downloads and extracts application packages
+  - Configures application settings via templates
+  - Deploys as a Windows service using NSSM
+  - Environment-specific configuration with connection strings and API URLs
+
+###  Multi-Server Architecture
 - Implementation includes proper inventory structure with:
   - Environment groups (production, development, testing)
   - Host grouping based on reachability
   - Group variables for configuration
 
-### ✅ WinRM Configuration
+### WinRM Configuration
   -  configured WinRM in inventory variables:
   - Using credssp transport for enhanced security
   - Credentials stored securely using Ansible Vault
 
-### ✅ Conditional Execution
+### Conditional Execution
 - Services are enabled/disabled via variables:
   - `pack_prometheus_node_exporter_enabled`
   - `pack_filezilla_enabled`
