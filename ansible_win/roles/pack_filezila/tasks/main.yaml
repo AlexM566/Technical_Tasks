@@ -1,0 +1,16 @@
+---
+- name: Download filezila
+  win_get_url:
+    url: "{{ filezilla_url }}"
+    dest: "{{ filezila_dest_download }}\\filezilla.msi"
+
+- name: Install filezilla
+  win_package:
+    path: "{{ filezila_dest_download }}\\filezilla.msi"
+    state: present
+
+- name: Configure filezilla service
+  win_service:
+    name: "filezilla"
+    start_mode: "auto"
+    state: "started"

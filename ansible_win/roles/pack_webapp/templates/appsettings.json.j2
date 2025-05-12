@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "{{ webapp_log_level }}"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "{{ webapp_connection_string }}"
+  },
+  "AppSettings": {
+    "Environment": "{{ webapp_environment }}",
+    "ApiUrl": "{{ webapp_api_url | default('http://localhost:' + webapp_app_port | string) }}"
+  }
+}

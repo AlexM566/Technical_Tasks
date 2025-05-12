@@ -1,0 +1,5 @@
+---
+pack_filezilla_enabled: false
+
+filezilla_url: "https://url.com" # defining the url to download the prometheus node exporter / can be also an intranet location like artifactory
+filezila_dest_download: C:\temp\

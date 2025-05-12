@@ -1,0 +1,12 @@
+---
+
+pack_filezilla_enabled: true # Enable the FileZilla role
+pack_prometheus_node_exporter_enabled: true # Enable the Prometheus Node Exporter role
+
+
+# Web Application Configuration - Testing
+webapp_environment: "testing"
+webapp_log_level: "Information"
+webapp_connection_string: "Server=test-sql-01;Database=SampleDB_Test;User ID=testuser;Password=testpass;"
+webapp_api_url: "http://test-api.example.com"
+

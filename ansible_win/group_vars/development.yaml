@@ -1,0 +1,9 @@
+---
+pack_prometheus_node_exporter_enabled: true # Enable the Prometheus Node Exporter role
+
+
+# Web Application Configuration - Development
+webapp_environment: "development"
+webapp_log_level: "Debug"
+webapp_connection_string: "Server=dev-sql-01;Database=SampleDB_Dev;User ID=devuser;Password=devpass;"
+webapp_api_url: "http://dev-api.example.com"

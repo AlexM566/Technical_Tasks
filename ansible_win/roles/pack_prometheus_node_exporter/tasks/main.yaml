@@ -1,0 +1,40 @@
+---
+- name: Check if Prometheus node exporter is enabled & installed
+  block:
+    - name: Ensure download directory exists
+      win_file:
+        path: "{{ prometheus_node_exporter_destination_download }}"
+        state: directory
+      
+    - name: Download Prometheus node exporter
+      win_get_url:
+        url: "{{ prometheus_exporter_url }}"
+        dest: "{{ prometheus_node_exporter_destination_download }}\\windows_exporter.msi"
+      register: download_result
+      failed_when: download_result.msg is defined and download_result.msg != ""
+
+    - name: Install Prometheus node exporter
+      win_package:
+        path: "{{ prometheus_node_exporter_destination_download }}\\windows_exporter.msi"
+        state: present
+        arguments: >
+          ENABLED_COLLECTORS={{ prometheus_node_exporter_collectors | join(',') }}
+          LISTEN_ADDR={{ prometheus_node_exporter_address }}
+          LISTEN_PORT={{ prometheus_node_exporter_port }}
+      register: package_result
+
+    - name: Configure Prometheus node exporter service
+      win_service:
+        name: "{{ prometheus_node_exporter_service_name }}"
+        start_mode: "{{ prometheus_node_exporter_startup }}"
+        state: "{{ prometheus_node_exporter_state }}"
+        dependencies: []
+      when: package_result.changed or package_result.reboot_required
+
+    - name: Verify service is running
+      win_service:
+        name: "{{ prometheus_node_exporter_service_name }}"
+      register: service_status
+      failed_when: service_status.state != "running" and prometheus_node_exporter_state == "started"
+  when: pack_prometheus_node_exporter_enabled | bool
+
