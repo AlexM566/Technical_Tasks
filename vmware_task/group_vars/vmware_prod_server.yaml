@@ -1,0 +1,3 @@
+---
+deploy_vm_enabled: true
+config_vm_enabled: true

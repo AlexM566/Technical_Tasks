@@ -1,0 +1,10 @@
+---
+config_vm_enabled: true
+
+# VM Hardware Configuration
+vm_memory_mb: 32768  # 32 GB in MB
+vm_num_cpus: 6
+
+# VM Disk Configuration
+vm_disk_c_size_gb: 300
+vm_disk_d_size_gb: 200
