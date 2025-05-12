@@ -20,3 +20,7 @@
     - role: pack_prometheus_node_exporter
       tags: prometheus_node_exporter
       when: (pack_prometheus_node_exporter_enabled | default(false))
+
+    - role: pack_filezilla
+      tags: filezilla
+      when: (pack_filezilla_enabled | default(false))
