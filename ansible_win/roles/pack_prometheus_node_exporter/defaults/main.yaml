@@ -1,0 +1,23 @@
+---
+pack_prometheus_node_exporter_enabled: false
+
+prometheus_exporter_url: "https://url.com" # defining the url to download the prometheus node exporter / can be also an intranet location like artifactory
+# Service configuration
+prometheus_node_exporter_service_name: "windows_exporter"
+prometheus_node_exporter_startup: "auto"
+prometheus_node_exporter_state: "started"
+
+# Exporter configuration
+prometheus_node_exporter_port: 9182
+prometheus_node_exporter_address: "0.0.0.0"
+prometheus_node_exporter_collectors:
+  - cpu
+  - cs
+  - logical_disk
+  - memory
+  - net
+  - os
+  - system
+  - service
+
+prometheus_node_exporter_destination_download: C:\temp\

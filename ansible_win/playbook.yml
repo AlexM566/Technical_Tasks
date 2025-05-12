@@ -17,6 +17,6 @@
   hosts: reachable_hosts
 
   roles:
-    - role: pack_placeholder
-      tags: placeholder
-      when: (placeholder_enabled | default(false))
+    - role: pack_prometheus_node_exporter
+      tags: prometheus_node_exporter
+      when: (pack_prometheus_node_exporter_enabled | default(false))
