@@ -1,0 +1,26 @@
+---
+- name: Check host reachability
+  hosts: "{{ ansible_limit | default(omit) }}" # Allows limiting hosts dynamically
+  gather_facts: false
+  tasks:
+    - name: host recheability
+      block:
+        - name: check connection of the server
+          ansible.builtin.setup:
+          register: reachable_check
+          ignore_errors: true  # Ignore errors to continue playbook execution
+        - name:  Add to un/reachable hosts
+          ansible.builtin.group_by:
+            key: "{{ (reachable_check.failed | default(false)) | ternary('unreachable', 'reachable') }}_hosts"
+
+- name: Windows VM DEPLOYMENT in vSphere
+  hosts: reachable_hosts
+
+  roles:
+    - role: deploy_vm 
+      tags: deploy_vm
+      when: (deploy_vm_enabled | default(false))
+
+    - role: config_vm
+      tags: config_vm
+      when: (config_vm_enabled | default(false))

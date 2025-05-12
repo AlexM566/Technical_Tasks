@@ -1,0 +1,21 @@
+---
+- name: Deploy a virtual machine
+  vmware_guest:
+    hostname: "{{ vmware_host }}"
+    username: "{{ vmware_user }}"
+    password: "{{ vmware_password }}"
+    validate_certs: no
+    name: "{{ vm_name }}"
+    template: "{{ template_name }}"
+    datacenter: "{{ vmware_datacenter }}"
+    datastore: "{{ vmware_datastore }}"
+    networks: "{{ vmware_network }}"
+    folder: "{{ folder_name | default(omit) }}"
+    state: poweredon
+    wait_for_ip_address: yes
+  delegate_to: localhost
+  register: deploy_vm
+  
+- name: Show VM IP address
+  debug:
+    msg: "VM deployed with IP: {{ deploy_vm.instance.ipv4 }}"

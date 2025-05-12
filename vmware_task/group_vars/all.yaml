@@ -1,0 +1,8 @@
+---
+# add here global variables
+vmware_host : "vmware_host.company.com"
+vmware_user : "admin"
+vmware_password : {{ vsphere_password }} #defined in vault
+vmware_datacenter : "Datacenter"
+vmware_datastore : "Datastore1"
+vmware_network : "VM Network2"
